@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.RdbProfessor = new System.Windows.Forms.RadioButton();
+            this.RdbFuncionario = new System.Windows.Forms.RadioButton();
             this.RdbAluno = new System.Windows.Forms.RadioButton();
             this.BtnLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,37 +43,39 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.groupBox1.Controls.Add(this.RdbProfessor);
+            this.groupBox1.Controls.Add(this.RdbFuncionario);
             this.groupBox1.Controls.Add(this.RdbAluno);
             this.groupBox1.Controls.Add(this.BtnLogin);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtSenha);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.TxtEmail);
-            this.groupBox1.Location = new System.Drawing.Point(95, 160);
+            this.groupBox1.Location = new System.Drawing.Point(25, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 362);
+            this.groupBox1.Size = new System.Drawing.Size(410, 543);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
             // 
-            // RdbProfessor
+            // RdbFuncionario
             // 
-            this.RdbProfessor.AutoSize = true;
-            this.RdbProfessor.BackColor = System.Drawing.Color.White;
-            this.RdbProfessor.Location = new System.Drawing.Point(162, 245);
-            this.RdbProfessor.Name = "RdbProfessor";
-            this.RdbProfessor.Size = new System.Drawing.Size(122, 29);
-            this.RdbProfessor.TabIndex = 6;
-            this.RdbProfessor.Text = "Professor";
-            this.RdbProfessor.UseVisualStyleBackColor = false;
+            this.RdbFuncionario.AutoSize = true;
+            this.RdbFuncionario.BackColor = System.Drawing.Color.White;
+            this.RdbFuncionario.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.RdbFuncionario.Location = new System.Drawing.Point(184, 245);
+            this.RdbFuncionario.Name = "RdbFuncionario";
+            this.RdbFuncionario.Size = new System.Drawing.Size(143, 29);
+            this.RdbFuncionario.TabIndex = 7;
+            this.RdbFuncionario.TabStop = true;
+            this.RdbFuncionario.Text = "Funcionario";
+            this.RdbFuncionario.UseVisualStyleBackColor = false;
             // 
             // RdbAluno
             // 
             this.RdbAluno.AutoSize = true;
             this.RdbAluno.BackColor = System.Drawing.Color.White;
             this.RdbAluno.Checked = true;
-            this.RdbAluno.Location = new System.Drawing.Point(24, 245);
+            this.RdbAluno.Location = new System.Drawing.Point(39, 245);
             this.RdbAluno.Name = "RdbAluno";
             this.RdbAluno.Size = new System.Drawing.Size(85, 29);
             this.RdbAluno.TabIndex = 5;
@@ -83,7 +85,7 @@
             // 
             // BtnLogin
             // 
-            this.BtnLogin.Location = new System.Drawing.Point(24, 307);
+            this.BtnLogin.Location = new System.Drawing.Point(30, 384);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(284, 57);
             this.BtnLogin.TabIndex = 4;
@@ -131,13 +133,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BlackFit.Properties.Resources.telaloginblackfit;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(513, 646);
+            this.ClientSize = new System.Drawing.Size(468, 646);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "TelaLogin";
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.TelaLogin_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -147,13 +148,13 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton RdbProfessor;
         private System.Windows.Forms.RadioButton RdbAluno;
         private System.Windows.Forms.Button BtnLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtSenha;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtEmail;
+        private System.Windows.Forms.RadioButton RdbFuncionario;
     }
 }
 

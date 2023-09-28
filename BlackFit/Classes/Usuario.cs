@@ -15,6 +15,10 @@ namespace BlackFit.Classes
         public string Email { get; set; }
         public string Senha { get; set; }
         public bool Ativo { get; set; }
+
+        public int IdPlano { get; set; }
+
+        public string Telefone { get; set; }
         #endregion
 
         #region Construtores
@@ -31,6 +35,8 @@ namespace BlackFit.Classes
             Email = email;
             Senha = senha;
             Ativo = ativo;
+            IdPlano = IdPlano;
+            Telefone = Telefone;
         }
         #endregion
 

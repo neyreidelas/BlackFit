@@ -25,40 +25,46 @@ namespace BlackFit
     private void BtnLogin_Click(object sender, EventArgs e)
     {
         try
-        {
-            //Declaração  - ATRIBUIÇÃO - Execução do método RealizarLogin()
-            Usuario userLogado = Usuario.RealizarLogin(TxtEmail.Text, TxtSenha.Text, RdbAluno.Checked);
+            {
+                //Declaração  - ATRIBUIÇÃO - Execução do método RealizarLogin()
+                Usuario userLogado = Usuario.RealizarLogin(TxtEmail.Text, TxtSenha.Text, RdbAluno.Checked);
 
-            if (userLogado.Senha == Crypto.Sha256("123"))
-            {
-                TelaAlterarSenha tlAlterarSenha = new TelaAlterarSenha (userLogado);
-                tlAlterarSenha.ShowDialog();
-                TxtSenha.Clear(); //Limpar
-                TxtSenha.Focus(); //Deixar já selecionado.
-            }
-            else
-            {
-                //Declaração da TELA!    --  Instanciação executando um Construtor
-               TelaPrincipal tlPrincipal = new TelaPrincipal(userLogado);
-                this.Hide();
-                tlPrincipal.ShowDialog();
-                this.Show();
-                TxtSenha.Clear();
-            }
+                if (userLogado.Senha == Crypto.Sha256("123"))
+                {
+                    TelaAlterarSenha tlAlterarSenha = new TelaAlterarSenha(userLogado);
+                    tlAlterarSenha.ShowDialog();
+                    TxtSenha.Clear(); //Limpar
+                    TxtSenha.Focus(); //Deixar já selecionado.
+                }
+                else
+                {
+                    RdbPersonal.Checked
+                    //Declaração da TELA!    --  Instanciação executando um Construtor
+
+                    this.Hide();
+
+                    this.Show();
+                    TxtSenha.Clear();
+                }
+             
         }
-        catch (Exception ex)
+            catch (Exception ex)
         {
             MessageBox.Show(ex.Message
                           , "Escola X"
                           , MessageBoxButtons.OK
                           , MessageBoxIcon.Error);
         }
-    }
+        }
+       
 
-        private void TelaLogin_Load(object sender, EventArgs e)
-        {
 
+
+       
+
+      
+            
         }
     }
-}
+
 

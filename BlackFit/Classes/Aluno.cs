@@ -11,6 +11,10 @@ namespace BlackFit.Classes
     {
         #region Propriedades
         public DateTime DtMatricula { get; set; }
+
+        public int IdPlano { get; set; }
+
+        public  string Telefone { get; set; }
         #endregion
 
         #region Construtores
@@ -27,7 +31,7 @@ namespace BlackFit.Classes
         #region Métodos
         public void Cadastrar(List<Aluno> alunos)
         {
-            string query = string.Format($"INSERT INTO Aluno VALUES('{Nome}', '{DtNascimento}', '{DtMatricula}', '{Email}', '{Crypto.Sha256("123")}', 1)");
+            string query = string.Format($"Insert Into Aluno VALUES ({IdPlano}, '{Nome}', '{Email}', '{Telefone}','{Crypto.Sha256("123")},1)"); 
             query += "; SELECT SCOPE_IDENTITY()";
             Conexao cn = new Conexao(query);
 
