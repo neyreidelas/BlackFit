@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackFit.Classes
 {
-    public class Professor : Usuario
+    public class Professor : Funcionario
     {
         #region Propriedades
         public string CPF { get; set; }

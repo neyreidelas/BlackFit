@@ -14,10 +14,10 @@ namespace BlackFit.Telas
     public partial class TelaAlterarSenha : Form
     { 
         
-        private Usuario _userLogado;
+        private Funcionario _userLogado;
 
     //Exigir que a tela tenha o usuário logado
-    public TelaAlterarSenha(Usuario userLogado)
+    public TelaAlterarSenha(Funcionario userLogado)
     {
         InitializeComponent();
         _userLogado = userLogado;

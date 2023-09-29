@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackFit.Classes
 {
-    public class Usuario
+    public class Funcionario
     {
         #region Propriedades
         public int Id { get; set; }
@@ -22,12 +22,12 @@ namespace BlackFit.Classes
         #endregion
 
         #region Construtores
-        public Usuario()
+        public Funcionario()
         {
 
         }
 
-        public Usuario(int id, string nome, DateTime dtNascimento, string email, string senha, bool ativo)
+        public Funcionario(int id, string nome, DateTime dtNascimento, string email, string senha, bool ativo, int IdPlano, string Telefone)
         {
             Id = id;
             Nome = nome;
@@ -84,7 +84,7 @@ namespace BlackFit.Classes
         //}
         #endregion
 
-        public static Usuario RealizarLogin(string email, string senha, bool tipoAcesso)
+        public static Funcionario RealizarLogin(string email, string senha, bool tipoAcesso)
         {
             if (tipoAcesso)
             {
@@ -104,13 +104,15 @@ namespace BlackFit.Classes
                         //Achou os dados do usuário de acordo com o E-mail pesquisado
                         while (cn.dr.Read())
                         {
-                            usuario.Id = Convert.ToInt32(cn.dr[0]);
+                            usuario.IdAluno = Convert.ToInt32(cn.dr[0]);
                             usuario.Nome = cn.dr[1].ToString();
-                            usuario.DtNascimento = Convert.ToDateTime(cn.dr[2]);
-                            usuario.DtMatricula = Convert.ToDateTime(cn.dr[3]);
+                            
+                           
                             usuario.Email = cn.dr[4].ToString();
                             usuario.Senha = cn.dr[5].ToString();
                             usuario.Ativo = Convert.ToBoolean(cn.dr[6]);
+                            usuario.IdPlano = Convert.ToInt32(cn.dr[7]);
+                            usuario.Telefone = cn.dr[8].ToString();
                         }
 
                         if (usuario.Senha == Crypto.Sha256(senha))
@@ -118,7 +120,7 @@ namespace BlackFit.Classes
                             if (usuario.Ativo)
                             {
                                 //Deu tudo certo
-                                return usuario;
+                                
                             }
                             else
                             {
@@ -149,7 +151,7 @@ namespace BlackFit.Classes
                 string query = string.Format($"SELECT * FROM Professor WHERE Email = '{email}'");
                 Conexao cn = new Conexao(query);
 
-                Professor usuario = new Professor();
+                Funcionario funcionario = new Funcionario();
 
                 //Bloco - try..catch
                 try
@@ -162,22 +164,21 @@ namespace BlackFit.Classes
                         //Achou os dados do usuário de acordo com o E-mail pesquisado
                         while (cn.dr.Read())
                         {
-                            usuario.Id = Convert.ToInt32(cn.dr[0]);
-                            usuario.Nome = cn.dr[1].ToString();
-                            usuario.DtNascimento = Convert.ToDateTime(cn.dr[2]);
-                            usuario.CPF = cn.dr[3].ToString();
-                            usuario.Email = cn.dr[4].ToString();
-                            usuario.Senha = cn.dr[5].ToString();
-                            usuario.NivelAcesso = Convert.ToInt32(cn.dr[6]);
-                            usuario.Ativo = Convert.ToBoolean(cn.dr[7]);
+                            funcionario.Id = Convert.ToInt32(cn.dr[0]);
+                            funcionario.Nome = cn.dr[1].ToString();
+                            funcionario.DtNascimento = Convert.ToDateTime(cn.dr[2]);
+                            funcionario.Email = cn.dr[3].ToString();
+                            funcionario.Senha = cn.dr[4].ToString();
+                            funcionario.Ativo = Convert.ToBoolean(cn.dr[5]);
+                            
                         }
 
-                        if (usuario.Senha == Crypto.Sha256(senha))
+                        if (funcionario.Senha == Crypto.Sha256(senha))
                         {
-                            if (usuario.Ativo)
+                            if (funcionario.Ativo)
                             {
                                 //Deu tudo certo
-                                return usuario;
+                                return funcionario;
                             }
                             else
                             {
@@ -257,12 +258,12 @@ namespace BlackFit.Classes
                 throw;
             }
         }
-        public static List<Usuario> BuscarUsuarios()
+        public static List<Funcionario> BuscarUsuarios()
         {
             string query = string.Format("SELECT * FROM Aluno");
             Conexao cn = new Conexao(query);
 
-            List<Usuario> usuarios = new List<Usuario>();
+            List<Funcionario> usuarios = new List<Funcionario>();
 
             try
             {
@@ -272,14 +273,16 @@ namespace BlackFit.Classes
                 {
                     usuarios.Add(new Aluno()
                     {
-                        Id = Convert.ToInt32(cn.dr[0]),
+                        IdAluno = Convert.ToInt32(cn.dr[0]),
                         Nome = cn.dr[1].ToString(),
                         DtNascimento = Convert.ToDateTime(cn.dr[2]),
                         DtMatricula = Convert.ToDateTime(cn.dr[3]),
                         Email = cn.dr[4].ToString(),
                         Senha = cn.dr[5].ToString(),
-                        Ativo = Convert.ToBoolean(cn.dr[6])
-                    });
+                        Ativo = Convert.ToBoolean(cn.dr[6]),
+                        IdPlano = Convert.ToInt32(cn.dr[7]),
+                        Telefone = cn.dr[8].ToString()
+                    }) ;
                 }
                 return usuarios;
             }

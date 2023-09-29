@@ -50,7 +50,7 @@
     <Compile Include="Classes\Conexao.cs" />
     <Compile Include="Classes\Crypto.cs" />
     <Compile Include="Classes\Personal.cs" />
-    <Compile Include="Classes\Usuario.cs" />
+    <Compile Include="Classes\Funcionario.cs" />
     <Compile Include="Telas\TelaAlterarSenha.cs">
       <SubType>Form</SubType>
     </Compile>

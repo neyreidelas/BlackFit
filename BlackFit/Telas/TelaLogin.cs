@@ -27,7 +27,7 @@ namespace BlackFit
         try
             {
                 //Declaração  - ATRIBUIÇÃO - Execução do método RealizarLogin()
-                Usuario userLogado = Usuario.RealizarLogin(TxtEmail.Text, TxtSenha.Text, RdbAluno.Checked);
+                Funcionario userLogado = Funcionario.RealizarLogin(TxtEmail.Text, TxtSenha.Text, RdbAluno.Checked);
 
                 if (userLogado.Senha == Crypto.Sha256("123"))
                 {
@@ -38,7 +38,7 @@ namespace BlackFit
                 }
                 else
                 {
-                    RdbPersonal.Checked
+                    
                     //Declaração da TELA!    --  Instanciação executando um Construtor
 
                     this.Hide();

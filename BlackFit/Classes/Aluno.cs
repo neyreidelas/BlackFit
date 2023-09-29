@@ -7,14 +7,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace BlackFit.Classes
 {
-    public class Aluno : Usuario
+    public class Aluno
     {
         #region Propriedades
-        public DateTime DtMatricula { get; set; }
+
+        public int IdAluno { get; set; }
 
         public int IdPlano { get; set; }
-
+        public string Nome { get; set; }
+        public string Email { get; set; }
         public  string Telefone { get; set; }
+        public string Senha { get; set; }
+        public bool Ativo {get; set; }
+ 
+
+
         #endregion
 
         #region Construtores
@@ -22,9 +29,11 @@ namespace BlackFit.Classes
         {
         }
 
-        public Aluno(int id, string nome, DateTime dtNascimento, DateTime dtMatricula, string email, string senha, bool ativo) : base(id, nome, dtNascimento, email, senha, ativo)
+        public Aluno(int idAluno,int IdPlano, string nome, string email, string telefone, string senha, bool ativo) 
         {
-            DtMatricula = dtMatricula;
+            
+            int idPlano = IdPlano;
+            string Telefone = telefone;
         }
         #endregion
 
@@ -38,7 +47,7 @@ namespace BlackFit.Classes
             try
             {
                 cn.AbrirConexao();
-                Id = Convert.ToInt32(cn.comando.ExecuteScalar());
+                IdAluno = Convert.ToInt32(cn.comando.ExecuteScalar());
                 alunos.Add(this);
             }
             catch (Exception)
@@ -53,7 +62,7 @@ namespace BlackFit.Classes
 
         public void Alterar()
         {
-            string query = string.Format($"UPDATE Aluno SET Nome = '{Nome}', DtNascimento = '{DtNascimento}', DtMatricula = '{DtMatricula}', Email = '{Email}' WHERE Id = {Id}");
+            string query = string.Format($"Update Aluno set nome = {Nome}, {Email}");
             Conexao cn = new Conexao(query);
             try
             {
@@ -72,7 +81,7 @@ namespace BlackFit.Classes
 
         public void Excluir()
         {
-            string query = string.Format($"UPDATE Aluno SET Ativo = 0 WHERE Id = {Id}");
+            string query = string.Format($"UPDATE Aluno SET Ativo = 0 WHERE Id);
             Conexao cn = new Conexao(query);
             try
             {
@@ -108,7 +117,7 @@ namespace BlackFit.Classes
                 case 2:
                     //Busca por matrícula (Id)
 
-                    return alunos.Where(a => a.Id == Convert.ToInt32(texto)).ToList();
+                    return alunos.Where(a => a.IdAluno == Convert.ToInt32(texto)).ToList();
 
                 //break; quando não for return, é obrigatório o uso do break.
                 default:
