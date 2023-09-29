@@ -12,7 +12,6 @@ namespace BlackFit.Classes
         #region Propriedades
 
         public int IdAluno { get; set; }
-
         public int IdPlano { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
@@ -20,8 +19,6 @@ namespace BlackFit.Classes
         public string Senha { get; set; }
         public bool Ativo {get; set; }
  
-
-
         #endregion
 
         #region Construtores
@@ -29,15 +26,82 @@ namespace BlackFit.Classes
         {
         }
 
-        public Aluno(int idAluno,int IdPlano, string nome, string email, string telefone, string senha, bool ativo) 
+        public Aluno(int idAluno,int idPlano, string nome, string email, string telefone, string senha, bool ativo) 
         {
-            
-            int idPlano = IdPlano;
-            string Telefone = telefone;
+            IdAluno = idAluno;
+            IdPlano = idPlano;
+            Nome = nome;
+            Email = email;
+            Telefone = telefone;
+            Senha = senha;
+            Ativo = ativo;
         }
         #endregion
 
         #region Métodos
+
+        public static Aluno RealizarLogin(string email, string senha)
+        {
+
+            string query = string.Format($"SELECT * FROM Aluno WHERE Email = '{email}'");
+            Conexao cn = new Conexao(query);
+
+            Aluno aluno = new Aluno();
+
+            //Bloco - try..catch
+            try
+            {
+                cn.AbrirConexao();
+                cn.dr = cn.comando.ExecuteReader(); // P/ Select! ExecuteReader()!!!!!
+
+                if (cn.dr.HasRows)
+                {
+                    //Achou os dados do usuário de acordo com o E-mail pesquisado
+                    while (cn.dr.Read())
+                    {
+                        aluno.IdAluno = Convert.ToInt32(cn.dr[0]);
+                        aluno.IdPlano = Convert.ToInt32(cn.dr[1]);
+                        aluno.Nome = Convert.ToString(cn.dr[2]);
+                        aluno.Email = cn.dr[3].ToString();
+                        aluno.Telefone = Convert.ToString(cn.dr[3]);
+                        aluno.Senha = cn.dr[4].ToString();
+                        aluno.Ativo = Convert.ToBoolean(cn.dr[5]);
+
+                    }
+
+                    if (aluno.Senha == Crypto.Sha256(senha))
+                    {
+                        if (aluno.Ativo)
+                        {
+                            //Deu tudo certo
+                            return aluno;
+                        }
+                        else
+                        {
+                            //Usuário bloqueado
+                            throw new Exception("Usuário bloqueado");
+                        }
+                    }
+                    else
+                    {
+                        //Senha incorreta
+                        throw new Exception("Senha incorreta!");
+                    }
+
+                }
+                else
+                {
+                    //Não teve retorno de linhas
+                    throw new Exception("E-mail inexistente!");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+    
+
         public void Cadastrar(List<Aluno> alunos)
         {
             string query = string.Format($"Insert Into Aluno VALUES ({IdPlano}, '{Nome}', '{Email}', '{Telefone}','{Crypto.Sha256("123")},1)"); 
@@ -81,7 +145,7 @@ namespace BlackFit.Classes
 
         public void Excluir()
         {
-            string query = string.Format($"UPDATE Aluno SET Ativo = 0 WHERE Id);
+            string query = string.Format($"UPDATE Aluno SET Ativo = 0 WHERE Id{1}");
             Conexao cn = new Conexao(query);
             try
             {
